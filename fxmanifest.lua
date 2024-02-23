@@ -2,7 +2,7 @@ fx_version 'cerulean'
 
 description 'Quiz Menu for FiveM'
 author 'GFLP10#7754'
-version '1.0.1'
+version '1.0.2'
 repository 'https://github.com/Justus-Braun/quiz-menu'
 
 lua54 'yes'

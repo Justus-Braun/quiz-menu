@@ -24,26 +24,26 @@ local function generateClientQuestions(questions)
     return clientQuestions
 end
 
-local function openQuestionMenu(source, questions, header)
+local function openQuestionMenu(source, questions, header, callback)
     if Cache.ClientIsInUse(source) then
         return
     end
 
     local data = generateClientQuestions(questions)
 
-    Cache.Add(source, questions, 'normal')
+    Cache.Add(source, questions, 'normal', callback)
 
     openMenu(source, data, header)
 end
 
-local function openQuestionMenuRandom(source, questions, header, amount)
+local function openQuestionMenuRandom(source, questions, header, amount, callback)
     if Cache.ClientIsInUse(source) then
         return
     end
 
     local data = generateClientQuestions(questions)
     local randomArray = Utils.PickRandomElementsInRandomOrder(data, amount)
-    Cache.Add(source, questions, 'random')
+    Cache.Add(source, questions, 'random', callback)
 
     openMenu(source, randomArray, header)
 end
@@ -58,11 +58,13 @@ local function finishQuiz(source, checkedAnswers)
 
     Cache.Remove(source)
 
-    print("Player " .. source .. " has finished the quiz with " .. amountOfCorrectAnswers .. " correct answers out of " .. amountOfQuestions)
+    if clientData.callback then
+        clientData.callback(amountOfCorrectAnswers, amountOfQuestions)
+    end
 end
 
-exports('openQuestionMenu', openQuestionMenu)
-exports('openQuestionMenuRandom', openQuestionMenuRandom)
+exports('OpenQuestionMenu', openQuestionMenu)
+exports('OpenQuestionMenuRandom', openQuestionMenuRandom)
 
 RegisterNetEvent("quiz-menu:server:finish", function (checkedAnswers)
     local source = source

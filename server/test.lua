@@ -119,7 +119,9 @@ RegisterCommand("quizNormal", function (source, args, rawCommand)
         }
     }
 
-    exports[GetCurrentResourceName()]:openQuestionMenu(source, questions, 'Normal')
+    exports[GetCurrentResourceName()]:OpenQuestionMenu(source, questions, 'Normal', function(amountOfCorrectAnswers, amountOfQuestions)
+        print('You got ' .. amountOfCorrectAnswers .. ' out of ' .. amountOfQuestions .. ' correct!')
+    end)
 end, false)
 
 RegisterCommand("quizRandom", function(source, args, rawCommand)
@@ -243,5 +245,7 @@ RegisterCommand("quizRandom", function(source, args, rawCommand)
         }
     }
 
-    exports[GetCurrentResourceName()]:openQuestionMenuRandom(source, questions, 'Random', 5)
+    exports[GetCurrentResourceName()]:OpenQuestionMenuRandom(source, questions, 'Random', 5, function(amountOfCorrectAnswers, amountOfQuestions)
+        print('You got ' .. amountOfCorrectAnswers .. ' out of ' .. amountOfQuestions .. ' correct!')
+    end)
 end, false)
