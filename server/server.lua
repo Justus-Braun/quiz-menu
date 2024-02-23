@@ -1,3 +1,4 @@
+---@diagnostic disable-next-line: undefined-global
 lib.versionCheck('Justus-Braun/quiz-menu')
 
 local function openMenu(source, questions, header)
