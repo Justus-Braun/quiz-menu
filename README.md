@@ -4,6 +4,8 @@ This is a simple quiz menu that can be used in any resource. It is a simple menu
 
 The questions get only validated on the server side, the client has never the answer to the questions.
 
+[Showcase](https://streamable.com/v9eg2s)
+
 ## Usage
 
 To use this menu, you need to add the following code to your resource:
