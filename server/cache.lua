@@ -6,7 +6,7 @@ local function clientIsInUse(source)
     end
 end
 
-local function add(source, questions, type, callback)
+local function add(source, questions, type, callback, showResults)
     if clientIsInUse(source) then
         return
     end
@@ -14,7 +14,8 @@ local function add(source, questions, type, callback)
     cache[source] = {
         questions = questions,
         type = type,
-        callback = callback
+        callback = callback,
+        showResults = showResults
     }
 end
 

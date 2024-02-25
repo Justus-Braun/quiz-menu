@@ -11,7 +11,14 @@ end)
 
 RegisterNetEvent('quiz-menu:client:open', function(questions)
 	toggleNuiFrame(true)
-	SendReactMessage('setData', questions)
+	SendReactMessage('show', 'questions')
+	SendReactMessage('setQuestions', questions)
+end)
+
+RegisterNetEvent('quiz-menu:client:showResult', function(amountOfCorrectAnswers, amountOfQuestions)
+	toggleNuiFrame(true)
+	SendReactMessage('show', 'result')
+	SendReactMessage('setResult', {amountOfCorrectAnswers = amountOfCorrectAnswers, amountOfQuestions = amountOfQuestions})
 end)
 
 RegisterNUICallback('submitForm', function(body, cb)

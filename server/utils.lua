@@ -82,8 +82,6 @@ end
 local function checkRandomArray(randomArrayChecked, originalQuestions)
     local amountOfCorrectAnswers = 0
 
-    print(json.encode(originalQuestions))
-
     for i = 1, #randomArrayChecked do
         local question = randomArrayChecked[i].question
         local answers = randomArrayChecked[i].answers

@@ -1,15 +1,4 @@
----@diagnostic disable-next-line: undefined-global
 lib.versionCheck('Justus-Braun/quiz-menu')
-
----Deep copy of a table. (Because FiveM doesn't support table.deepcopy) and table.clone is not deep. Because FiveM is a bit special. (https://shorturl.at/flCV3)
----@param obj any
----@return any
-local function copy(obj)
-    if type(obj) ~= 'table' then return obj end
-    local res = {}
-    for k, v in pairs(obj) do res[copy(k)] = copy(v) end
-    return res
-end
 
 local function openMenu(source, questions, header)
     local clientData = {
@@ -20,7 +9,7 @@ local function openMenu(source, questions, header)
 end
 
 local function generateClientQuestions(questionPointer)
-    local questions = copy(questionPointer)
+    local questions = lib.table.deepclone(questionPointer)
 
     local clientQuestions = {}
 
@@ -36,19 +25,19 @@ local function generateClientQuestions(questionPointer)
     return clientQuestions
 end
 
-local function openQuestionMenu(source, questions, header, callback)
+local function openQuestionMenu(source, questions, header, callback, showResults)
     if Cache.ClientIsInUse(source) then
         return
     end
 
     local data = generateClientQuestions(questions)
 
-    Cache.Add(source, questions, 'normal', callback)
+    Cache.Add(source, questions, 'normal', callback, showResults)
 
     openMenu(source, data, header)
 end
 
-local function openQuestionMenuRandom(source, questions, header, amount, callback)
+local function openQuestionMenuRandom(source, questions, header, amount, callback, showResults)
     if Cache.ClientIsInUse(source) then
         return
     end
@@ -56,7 +45,7 @@ local function openQuestionMenuRandom(source, questions, header, amount, callbac
     local data = generateClientQuestions(questions)
     local randomArray = Utils.PickRandomElementsInRandomOrder(data, amount)
 
-    Cache.Add(source, questions, 'random', callback)
+    Cache.Add(source, questions, 'random', callback, showResults)
 
     openMenu(source, randomArray, header)
 end
@@ -73,6 +62,10 @@ local function finishQuiz(source, checkedAnswers)
 
     if clientData.callback then
         clientData.callback(amountOfCorrectAnswers, amountOfQuestions)
+    end
+
+    if clientData.showResults then
+        TriggerClientEvent("quiz-menu:client:showResult", source, amountOfCorrectAnswers, amountOfQuestions)
     end
 end
 

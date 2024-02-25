@@ -2,7 +2,7 @@ fx_version 'cerulean'
 
 description 'Quiz Menu for FiveM'
 author 'GFLP10#7754'
-version '1.0.3'
+version '1.1.0'
 repository 'https://github.com/Justus-Braun/quiz-menu'
 
 lua54 'yes'
@@ -20,7 +20,7 @@ server_scripts {
   'server/cache.lua',
   'server/utils.lua',
   'server/server.lua',
-  -- 'server/test.lua'
+  'server/test.lua'
 }
 
 files {

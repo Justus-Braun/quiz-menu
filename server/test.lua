@@ -247,5 +247,5 @@ RegisterCommand("quizRandom", function(source, args, rawCommand)
 
     exports[GetCurrentResourceName()]:OpenQuestionMenuRandom(source, questions, 'Random', 5, function(amountOfCorrectAnswers, amountOfQuestions)
         print('You got ' .. amountOfCorrectAnswers .. ' out of ' .. amountOfQuestions .. ' correct!')
-    end)
+    end, true)
 end, false)
