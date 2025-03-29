@@ -10,13 +10,13 @@ The questions get only validated on the server side, the client has never the an
 
 To use this menu, you need to add the following code to your resource:
 ```lua
-exports['quiz-menun']:OpenQuestionMenu(source, questions, 'Normal', function(amountOfCorrectAnswers, amountOfQuestions)
+exports['quiz-menu']:OpenQuestionMenu(source, questions, 'Normal', function(amountOfCorrectAnswers, amountOfQuestions)
     print('You got ' .. amountOfCorrectAnswers .. ' out of ' .. amountOfQuestions .. ' correct!')
 end, showResults)
 ```
 When you want to randomise the questions, you can use the following code:
 ```lua	
-exports['quiz-menun']:OpenQuestionMenuRandom(source, questions, 'Random', 5, function(amountOfCorrectAnswers, amountOfQuestions)
+exports['quiz-menu']:OpenQuestionMenuRandom(source, questions, 'Random', 5, function(amountOfCorrectAnswers, amountOfQuestions)
     print('You got ' .. amountOfCorrectAnswers .. ' out of ' .. amountOfQuestions .. ' correct!')
 end, showResults)
 ```
